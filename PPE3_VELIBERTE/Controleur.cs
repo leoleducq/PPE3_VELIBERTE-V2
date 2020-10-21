@@ -100,7 +100,7 @@ namespace PPE3_VELIBERTE
                             vmodele.DA[1].Update(vmodele.DT[1]);
                         }
                         else
-                            MessageBox.Show("Erreur : il faut saisir au moins la nom et la rue", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Erreur : il faut saisir au moins le nom et la rue", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                     if (c == 'u')  // modif
@@ -116,7 +116,7 @@ namespace PPE3_VELIBERTE
                             vmodele.DA[1].Update(vmodele.DT[1]);
                         }
                         else
-                            MessageBox.Show("Erreur : il faut saisir au moins la nom et la rue", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Erreur : il faut saisir au moins le nom et la rue", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                     MessageBox.Show("OK : données enregistrées Borne");
@@ -263,7 +263,7 @@ namespace PPE3_VELIBERTE
                             vmodele.DA[2].Update(vmodele.DT[2]);
                         }
                         else
-                            MessageBox.Show("Erreur : il faut saisir au moins la nom et la rue", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error); // à compléter
+                            MessageBox.Show("Erreur : il faut saisir au moins le nom et le prénom", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error); // à compléter
                     }
 
 
