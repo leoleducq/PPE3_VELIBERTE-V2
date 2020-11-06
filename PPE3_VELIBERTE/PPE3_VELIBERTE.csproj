@@ -60,11 +60,11 @@
     <Compile Include="FormCRUDBorne.Designer.cs">
       <DependentUpon>FormCRUDBorne.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCRUDREPARATION.cs">
+    <Compile Include="FormCRUDReparation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCRUDREPARATION.Designer.cs">
-      <DependentUpon>FormCRUDREPARATION.cs</DependentUpon>
+    <Compile Include="FormCRUDReparation.Designer.cs">
+      <DependentUpon>FormCRUDReparation.cs</DependentUpon>
     </Compile>
     <Compile Include="FormCRUDVehicule.cs">
       <SubType>Form</SubType>
@@ -104,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCRUDBorne.resx">
       <DependentUpon>FormCRUDBorne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCRUDREPARATION.resx">
+      <DependentUpon>FormCRUDReparation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCRUDVehicule.resx">
       <DependentUpon>FormCRUDVehicule.cs</DependentUpon>

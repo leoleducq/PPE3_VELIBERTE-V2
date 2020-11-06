@@ -32,7 +32,7 @@ namespace PPE3_VELIBERTE
             }
             else
             {
-                MessageBox.Show("BD connectée", "Information BD", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("BD connectée", "Information BD", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -60,8 +60,40 @@ namespace PPE3_VELIBERTE
         /// <param name="e"></param>
         private void GestionDesDonneesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormGestion F = new FormGestion();
-            F.Show();
+            MessageBox.Show("Veuillez vous connecter au service technique", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            panel.Visible = true;
+        }
+
+        private void BoutonAnnuler_Click(object sender, EventArgs e)
+        {
+            textBoxIdentifiant.Clear();
+            textBoxMDP.Clear();           
+        }
+
+        private void BoutonValider_Click(object sender, EventArgs e)
+        {
+            Controleur.Vmodele.charger_donnees("PPE_utilisateur");
+            bool trouve = false;
+            for (int i = 0; i < Controleur.Vmodele.DT[6].Rows.Count; i++)
+            {
+                if (textBoxIdentifiant.Text == Controleur.Vmodele.DT[6].Rows[i]["loginST"].ToString() && textBoxMDP.Text == Controleur.Vmodele.DT[6].Rows[i]["motdepasseST"].ToString())
+                {
+                    MessageBox.Show("Bienvenue" + " ", "Bienvenue", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    trouve = true;
+                    this.Visible = false;
+                    FormGestion F = new FormGestion();
+                    F.Show();
+                }
+
+            }
+            if (trouve == false)
+            {
+                MessageBox.Show("Erreur dans les identifiants de connexion" + "", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
