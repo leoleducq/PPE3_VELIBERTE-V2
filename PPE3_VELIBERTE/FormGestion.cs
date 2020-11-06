@@ -115,6 +115,31 @@ namespace PPE3_VELIBERTE
                         dgvDonnees.Columns["latitudeV"].HeaderText = "Latitude Vélo";
                         dgvDonnees.Columns["longitudeV"].HeaderText = "Longitude vélo";
                     }
+                    else if (table == "PPE_utilisateur")
+                    {
+                        bindingSource1.DataSource = Controleur.Vmodele.DT[6];
+                        dgvDonnees.DataSource = bindingSource1;
+                        dgvDonnees.Columns["idU"].HeaderText = "Numéro Utilisateur";
+                        dgvDonnees.Columns["loginU"].HeaderText = "Identifiant Utilisteur";
+                        dgvDonnees.Columns["mdpU"].HeaderText = "Mot de passee Utilisateur";
+                    }
+                    else if (table == "PPE_travaux")
+                    {
+                        bindingSource1.DataSource = Controleur.Vmodele.DT[7];
+                        dgvDonnees.DataSource = bindingSource1;
+                        dgvDonnees.Columns["idT"].HeaderText = "Numéro Travaux";
+                        dgvDonnees.Columns["libelleT"].HeaderText = "Libellé Travaux";
+                    }
+                    else if (table =="PPE_reparer")
+                    {
+                        bindingSource1.DataSource = Controleur.Vmodele.DT[8];
+                        dgvDonnees.DataSource = bindingSource1;
+                        dgvDonnees.Columns["NumV"].HeaderText = "Numéro Vélo";
+                        dgvDonnees.Columns["idT"].HeaderText = "Numéro Travaux";
+                        dgvDonnees.Columns["dateR"].HeaderText = "Date Réparation";
+                        dgvDonnees.Columns["tempsR"].HeaderText = "Temps Réparation";
+                        dgvDonnees.Columns["idU"].HeaderText = "Identifiant Utilisateur";
+                    }
 
                     // mise à jour du dataGridView via le bindingSource rempli par le DataTable
                     dgvDonnees.Refresh();

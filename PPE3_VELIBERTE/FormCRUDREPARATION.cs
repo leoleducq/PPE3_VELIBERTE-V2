@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PPE3_VELIBERTE
 {
-    public partial class FormCRUDREPARATION : Form
+    public partial class FormCRUDReparation : Form
     {
-        public FormCRUDREPARATION()
+        public FormCRUDReparation()
         {
             InitializeComponent();
         }

@@ -92,7 +92,7 @@ namespace PPE3_VELIBERTE
         public Modele()
         {
             // instanciation des collections des Datatable et DataAdapter
-            for (int i = 0; i < 7 ; i++)
+            for (int i = 0; i < 10 ; i++)
             {
                 dA.Add(new MySqlDataAdapter());
                 dT.Add(new DataTable());
@@ -203,7 +203,6 @@ namespace PPE3_VELIBERTE
 
                 charger("select * from PPE_veloelectrique;", dT[4], dA[4]);
 
-
             }
             if (table == "PPE_velo")
             {
@@ -213,6 +212,17 @@ namespace PPE3_VELIBERTE
             }
             if(table == "PPE_utilisateur")
             {
+                charger("select * from PPE_utilisateur;", dT[6], dA[6]);
+            }
+            if(table =="PPE_travaux")
+            {
+                charger("select * from PPE_travaux;", dT[7], dA[7]);
+            }
+            if(table == "PPE_reparer")
+            {
+                charger("select * from PPE_vehicule;", dT[3], dA[3]);
+                charger("select * from PPE_travaux;", dT[7], dA[7]);
+                charger("select * from PPE_reparer;", dT[8], dA[8]);
                 charger("select * from PPE_utilisateur;", dT[6], dA[6]);
             }
         }

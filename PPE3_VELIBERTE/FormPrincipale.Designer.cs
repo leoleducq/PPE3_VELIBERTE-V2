@@ -37,8 +37,8 @@
             this.textBoxIdentifiant = new System.Windows.Forms.TextBox();
             this.textBoxMDP = new System.Windows.Forms.TextBox();
             this.panel = new System.Windows.Forms.Panel();
-            this.boutonValider = new System.Windows.Forms.Button();
             this.boutonAnnuler = new System.Windows.Forms.Button();
+            this.boutonValider = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel.SuspendLayout();
             this.SuspendLayout();
@@ -99,9 +99,9 @@
             // 
             this.textBoxMDP.Location = new System.Drawing.Point(161, 52);
             this.textBoxMDP.Name = "textBoxMDP";
+            this.textBoxMDP.PasswordChar = '*';
             this.textBoxMDP.Size = new System.Drawing.Size(160, 26);
             this.textBoxMDP.TabIndex = 5;
-            
             // 
             // panel
             // 
@@ -118,16 +118,6 @@
             this.panel.TabIndex = 6;
             this.panel.Visible = false;
             // 
-            // boutonValider
-            // 
-            this.boutonValider.Location = new System.Drawing.Point(233, 121);
-            this.boutonValider.Name = "boutonValider";
-            this.boutonValider.Size = new System.Drawing.Size(108, 34);
-            this.boutonValider.TabIndex = 7;
-            this.boutonValider.Text = "VALIDER";
-            this.boutonValider.UseVisualStyleBackColor = true;
-            this.boutonValider.Click += new System.EventHandler(this.BoutonValider_Click);
-            // 
             // boutonAnnuler
             // 
             this.boutonAnnuler.Location = new System.Drawing.Point(108, 121);
@@ -137,6 +127,16 @@
             this.boutonAnnuler.Text = "ANNULER";
             this.boutonAnnuler.UseVisualStyleBackColor = true;
             this.boutonAnnuler.Click += new System.EventHandler(this.BoutonAnnuler_Click);
+            // 
+            // boutonValider
+            // 
+            this.boutonValider.Location = new System.Drawing.Point(233, 121);
+            this.boutonValider.Name = "boutonValider";
+            this.boutonValider.Size = new System.Drawing.Size(108, 34);
+            this.boutonValider.TabIndex = 7;
+            this.boutonValider.Text = "VALIDER";
+            this.boutonValider.UseVisualStyleBackColor = true;
+            this.boutonValider.Click += new System.EventHandler(this.BoutonValider_Click);
             // 
             // FormPrincipale
             // 
