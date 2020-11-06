@@ -225,6 +225,13 @@ namespace PPE3_VELIBERTE
                 charger("select * from PPE_reparer;", dT[8], dA[8]);
                 charger("select * from PPE_utilisateur;", dT[6], dA[6]);
             }
+            if(table == "PPE_louer")
+            {
+                charger("select * from PPE_vehicule;", dT[3], dA[3]);
+                charger("select * from PPE_adherent;", dT[2], dA[2]);
+                charger("select * from PPE_vehicule;", dT[3], dA[3]);
+                charger("select * from PPE_louer;", dT[9], dA[9]);
+            }
         }
 
     }

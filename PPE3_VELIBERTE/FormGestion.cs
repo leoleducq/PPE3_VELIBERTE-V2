@@ -174,6 +174,10 @@ namespace PPE3_VELIBERTE
                 if (table == "PPE_velo") Controleur.crud_velo('c', -1);
                 if (table == "PPE_veloelectrique") Controleur.crud_veloelectrique('c', -1);
                 if (table == "PPE_vehicule") Controleur.crud_vehicule('c', -1);
+                if (table == "PPE_travaux") Controleur.crud_travaux('c', -1);
+                //if (table == "PPE_reparer") Controleur.crud_reparer('c', -1);
+                //if (table == "PPE_louer") Controleur.crud_louer('c', -1);
+
             }
             else
             {
@@ -187,6 +191,9 @@ namespace PPE3_VELIBERTE
                         if (table == "PPE_velo") Controleur.crud_velo('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
                         if (table == "PPE_veloelectrique") Controleur.crud_veloelectrique('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
                         if (table == "PPE_vehicule") Controleur.crud_vehicule('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
+                        if (table == "PPE_travaux") Controleur.crud_travaux('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
+                        //if (table == "PPE_reparer") Controleur.crud_reparer('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
+                        //if (table == "PPE_louer") Controleur.crud_louer('c', -1);
                     }
                     if (sender == supprimerToolStripMenuItem)
                     {
@@ -195,6 +202,9 @@ namespace PPE3_VELIBERTE
                         if (table == "PPE_velo") Controleur.crud_velo('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
                         if (table == "PPE_veloelectrique") Controleur.crud_veloelectrique('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
                         if (table == "PPE_vehicule") Controleur.crud_vehicule('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
+                        if (table == "PPE_travaux") Controleur.crud_travaux('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
+                        //if (table == "PPE_reparer") Controleur.crud_reparer('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
+                        //if (table == "PPE_louer") Controleur.crud_louer('c', -1);
 
                     }
 

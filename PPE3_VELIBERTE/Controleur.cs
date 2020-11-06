@@ -539,7 +539,6 @@ namespace PPE3_VELIBERTE
                         if (vmodele.DT[4].Rows[indice][0].ToString() == vmodele.DT[3].Rows[i][0].ToString())
                         {
                             vmodele.DT[3].Rows[i].Delete();
-
                         }
                     }
                     vmodele.DA[4].Update(vmodele.DT[4]);			// mise à jour du DataAdapter
@@ -665,11 +664,101 @@ namespace PPE3_VELIBERTE
                 }
             }
         }
+        ///<summary>
+        ///crud sur travaux
+        /// </summary>
+        /// <param name="c">définit l'action : c:create, u update, d delete </param>
+        /// <param name="indice">indice de l'élément sélectionné à modifier ou supprimer, -1 si ajout</param>
+        public static void crud_travaux(Char c, int indice)
+        {
+            if (c == 'd') // cas de la suppression
+            {
+                //   DialogResult rep = MessageBox.Show("Etes-vous sûr de vouloir supprimer ce constructeur "+ vmodele.DTConstructeur.Rows[indice][1].ToString()+ " ? ", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult rep = MessageBox.Show("Etes-vous sûr de vouloir supprimer ceci  " + vmodele.DT[7].Rows[indice][1].ToString() + " ? ", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (rep == DialogResult.Yes)
+                {
+                    for (int i = 0; i < Vmodele.DT[7].Rows.Count; i++)
+                    {
+                        if (vmodele.DT[7].Rows[indice][0].ToString() == vmodele.DT[7].Rows[i][0].ToString())
+                        {
+                            vmodele.DT[7].Rows[i].Delete();
+                        }
+                    }
+                    vmodele.DA[7].Update(vmodele.DT[7]);			// mise à jour du DataAdapter
+                    vmodele.DA[7].Update(vmodele.DT[7]);
+                }
+            }
+            else
+            {
+                // cas de l'ajout et modification
+                FormCRUDTravaux formCRUD = new FormCRUDTravaux();  // création de la nouvelle forme
 
+                if (c == 'c')  // mode ajout donc pas de valeur à passer à la nouvelle forme
+                {
+                    formCRUD.TypeTravaux.Clear();
+                }
+
+                if (c == 'u')   // mode update donc on récupère les champs
+                {
+                    formCRUD.TypeTravaux.Text = vmodele.DT[7].Rows[indice][1].ToString();
+                }
+
+                if (c == 'u')
+                {
+                    formCRUD.ShowDialog();
+
+                }
+                else
+                {
+                    formCRUD.ShowDialog();
+                }
+
+                // si l’utilisateur clique sur OK
+                if (formCRUD.DialogResult == DialogResult.OK)
+                {
+                    if (c == 'c') // ajout
+                    {
+                        DataRow NouvLigne = vmodele.DT[7].NewRow(); // table vehicule
+
+                       // NouvLigne["idT"] = ;
+                        NouvLigne["libelleT"] = formCRUD.TypeTravaux.Text;
+                        vmodele.DT[7].Rows.Add(NouvLigne);
+                        MessageBox.Show("Type travaux ajouté");
+
+                        vmodele.charger_donnees("PPE_travaux");
+                        int idT = Convert.ToInt32(vmodele.DT[7].Rows[vmodele.DT[7].Rows.Count - 1]["idT"].ToString());
+                        NouvLigne["idT"] = idT;
+                        NouvLigne["libelleT"] = formCRUD.TypeTravaux.Text;
+                        vmodele.DT[7].Rows.Add(NouvLigne);
+                        vmodele.DA[7].Update(vmodele.DT[7]);
+                    }
+
+                    if (c == 'u')  // modif
+                    {
+
+                        if (formCRUD.TypeTravaux.Text != "")
+                        {
+                            // on met à jour le dataTable avec les nouvelles valeurs
+
+                            vmodele.DT[7].Rows[indice]["libelleT"] = formCRUD.TypeTravaux.Text.ToString();
+                            vmodele.DA[7].Update(vmodele.DT[7]);
+                        }
+                        else
+                            MessageBox.Show("Erreur : Type de travaux non saisi.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    MessageBox.Show("OK : données enregistrées Type travaux");
+                    formCRUD.Dispose();  // on ferme la form
+                }
+                else
+                {
+                    MessageBox.Show("Annulation : aucune donnée enregistrée Type travaux");
+                    formCRUD.Dispose();
+                }
+            }
+        }
     }
 }
-//faire la methode crud velo
-// faire la methode crud velo electrique
        
 
 
