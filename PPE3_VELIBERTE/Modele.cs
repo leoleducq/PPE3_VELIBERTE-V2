@@ -177,39 +177,39 @@ namespace PPE3_VELIBERTE
             {
                 charger("show tables;", dT[0], dA[0]);
             }
-            if (table == "borne")
+            if (table == "PPE_borne")
             {
-                charger("select * from borne;", dT[1], dA[1]);
+                charger("select * from PPE_borne;", dT[1], dA[1]);
             }
-            if (table == "adherent")
+            if (table == "PPE_adherent")
             {
-                charger("select * from adherent;", dT[2], dA[2]);
+                charger("select * from PPE_adherent;", dT[2], dA[2]);
             }
-            if (table == "vehicule")
+            if (table == "PPE_vehicule")
             {
-                charger("select * from borne;", dT[1], dA[1]);
+                charger("select * from PPE_borne;", dT[1], dA[1]);
 
-                charger("select * from vehicule;", dT[3], dA[3]);
+                charger("select * from PPE_vehicule;", dT[3], dA[3]);
 
-                charger("select * from veloelectrique;", dT[4], dA[4]);
+                charger("select * from PPE_veloelectrique;", dT[4], dA[4]);
 
-                charger("select * from velo;", dT[5], dA[5]);
+                charger("select * from PPE_velo;", dT[5], dA[5]);
             }
-            if (table == "veloelectrique")
+            if (table == "PPE_veloelectrique")
             {
-                charger("select * from borne;", dT[1], dA[1]);
+                charger("select * from PPE_borne;", dT[1], dA[1]);
 
-                charger("select * from vehicule;", dT[3], dA[3]);
+                charger("select * from PPE_vehicule;", dT[3], dA[3]);
 
-                charger("select * from veloelectrique;", dT[4], dA[4]);
+                charger("select * from PPE_veloelectrique;", dT[4], dA[4]);
 
 
             }
-            if (table == "velo")
+            if (table == "PPE_velo")
             {
-                charger("select * from vehicule;", dT[3], dA[3]);
+                charger("select * from PPE_vehicule;", dT[3], dA[3]);
 
-                charger("select * from velo;", dT[5], dA[5]);
+                charger("select * from PPE_velo;", dT[5], dA[5]);
             }
         }
 
