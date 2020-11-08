@@ -16,5 +16,10 @@ namespace PPE3_VELIBERTE
         {
             InitializeComponent();
         }
+
+        private void FormCRUDReparation_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

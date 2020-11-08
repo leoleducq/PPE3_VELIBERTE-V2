@@ -16,6 +16,7 @@ namespace PPE3_VELIBERTE
     {
         #region propriétés
         private static Modele vmodele;
+        public static int idU;
         #endregion
 
         #region accesseurs
@@ -679,13 +680,9 @@ namespace PPE3_VELIBERTE
                 {
                     for (int i = 0; i < Vmodele.DT[7].Rows.Count; i++)
                     {
-                        if (vmodele.DT[7].Rows[indice][0].ToString() == vmodele.DT[7].Rows[i][0].ToString())
-                        {
                             vmodele.DT[7].Rows[i].Delete();
-                        }
                     }
                     vmodele.DA[7].Update(vmodele.DT[7]);			// mise à jour du DataAdapter
-                    vmodele.DA[7].Update(vmodele.DT[7]);
                 }
             }
             else
@@ -753,6 +750,145 @@ namespace PPE3_VELIBERTE
                 else
                 {
                     MessageBox.Show("Annulation : aucune donnée enregistrée Type travaux");
+                    formCRUD.Dispose();
+                }
+            }
+        }
+        ///<summary>
+        ///crud sur reparation
+        /// </summary>
+        /// <param name="c">définit l'action : c:create, u update, d delete </param>
+        /// <param name="indice">indice de l'élément sélectionné à modifier ou supprimer, -1 si ajout</param>
+        public static void crud_reparer(Char c, int indice)
+        {
+            if (c == 'd') // cas de la suppression
+            {
+                    //   DialogResult rep = MessageBox.Show("Etes-vous sûr de vouloir supprimer ce constructeur "+ vmodele.DTConstructeur.Rows[indice][1].ToString()+ " ? ", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult rep = MessageBox.Show("Etes-vous sûr de vouloir supprimer la réparation de type : " + vmodele.DT[7].Rows[indice][1].ToString() + " sur le vélo numéro : " + vmodele.DT[8].Rows[indice][0].ToString() + " ? ", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (rep == DialogResult.Yes)
+                    {
+                        for (int i = 0; i < Vmodele.DT[8].Rows.Count; i++)
+                        {
+                            vmodele.DT[8].Rows[i].Delete();
+                        }
+                        vmodele.DA[8].Update(vmodele.DT[8]);            // mise à jour du DataAdapter
+                    }
+            }
+            else
+            {
+                // cas de l'ajout et modification
+                FormCRUDReparation formCRUD = new FormCRUDReparation();  // création de la nouvelle forme
+                //FormCRUDVELOELEC formCRUD2 = new FormCRUDVELOELEC();
+
+                if (c == 'c')  // mode ajout donc pas de valeur à passer à la nouvelle forme
+                {
+                    formCRUD.CbNumeroVelo.SelectedIndex = -1;
+                    formCRUD.CbTypeTravaux.SelectedIndex = -1;
+                    formCRUD.DateTimePicker.Text = "";
+                    formCRUD.TextBoxTempsReparation.Clear();
+                    formCRUD.CbUtilisateur.SelectedIndex = -1;
+
+                    for (int i = 0; i < Vmodele.DT[6].Rows.Count; i++)
+                    {
+                        formCRUD.CbUtilisateur.Items.Add(Vmodele.DT[6].Rows[i]["idU"].ToString());
+                    }
+
+
+                }
+
+                if (c == 'u')   // mode update donc on récupère les champs
+                {
+                    formCRUD.CbUtilisateur.Visible = false;
+                    formCRUD.LabelUtilisateur.Visible = false;
+                    // on remplit les zones par les valeurs du dataGridView correspondantes
+                    for (int i =0; i < Vmodele.DT[3].Rows.Count; i++)
+                    {
+                        formCRUD.CbNumeroVelo.Items.Add(Vmodele.DT[3].Rows[i]["NumV"].ToString());
+                    }
+                    for (int i = 0; i < Vmodele.DT[7].Rows.Count; i++)
+                    {
+                        formCRUD.CbTypeTravaux.Items.Add(Vmodele.DT[7].Rows[i]["idT"].ToString());
+                    }
+
+                    formCRUD.CbNumeroVelo.SelectedIndex = Convert.ToInt32(vmodele.DT[8].Rows[indice][0].ToString()) - 1;              
+                    formCRUD.CbTypeTravaux.Text = vmodele.DT[8].Rows[indice][1].ToString();
+                    formCRUD.DateTimePicker.Text = Convert.ToString(vmodele.DT[8].Rows[indice][2].ToString());
+                    formCRUD.TextBoxTempsReparation.Text = Convert.ToString(vmodele.DT[8].Rows[indice][3].ToString());
+                }
+
+                if (c == 'u')
+                {
+                    formCRUD.ShowDialog();
+                   
+                }
+                else
+                {
+                    formCRUD.ShowDialog();
+                }
+
+                // si l’utilisateur clique sur OK
+                if (formCRUD.DialogResult == DialogResult.OK)
+                {
+                    /*if (c == 'c') // ajout
+                    {
+                        for (int i = 0; i < Vmodele.DT[6].Rows.Count; i++)
+                        {
+                            formCRUD.CbUtilisateur.Items.Add(Vmodele.DT[6].Rows[i]["idU"].ToString()); // boucle pour charger le num des bornes via leur nom 
+                        }
+
+                        DataRow NouvLigne = vmodele.DT[8].NewRow(); // table vehicule
+
+                        NouvLigne["NumV"] = formCRUD.CbEtatVehicule.Text;
+                        vmodele.DT[8].Rows.Add(NouvLigne);
+                        vmodele.DA[8].Update(vmodele.DT[8]);
+                        MessageBox.Show("Réparation ajoutée");
+
+
+                        if (formCRUD.RbClassique.Checked == true && formCRUD.RbElec.Checked == false) // ajout velo classique
+                        {
+                            vmodele.charger_donnees("vehicule");
+                            int numV = Convert.ToInt32(vmodele.DT[3].Rows[vmodele.DT[3].Rows.Count - 1]["numV"].ToString());
+                            NouvLigne1["numV"] = numV;
+                            NouvLigne1["latitudeV"] = formCRUD.TbLatC.Text;
+                            NouvLigne1["longitudeV"] = formCRUD.TbLongC.Text;
+                            vmodele.DT[5].Rows.Add(NouvLigne1);
+                            vmodele.DA[5].Update(vmodele.DT[5]);
+                        }
+                        else if (formCRUD.RbElec.Checked == true && formCRUD.RbClassique.Checked == false) // ajout velo elec
+                        {
+                            vmodele.charger_donnees("vehicule");
+                            int numV = Convert.ToInt32(vmodele.DT[3].Rows[vmodele.DT[3].Rows.Count - 1]["numV"].ToString());
+                            NouvLigne2["numV"] = numV;
+                            NouvLigne2["numB"] = Convert.ToInt32(formCRUD.CbNumBorne.SelectedIndex + 1);
+                            vmodele.DT[4].Rows.Add(NouvLigne2);
+                            vmodele.DA[4].Update(vmodele.DT[4]);
+                        }
+
+                    }*/
+
+                    if (c == 'u')  // modif
+                    {
+
+                        if (formCRUD.CbTypeTravaux.Text != "" && formCRUD.DateTimePicker.Text != "" && formCRUD.TextBoxTempsReparation.Text !="")
+                        {
+                            // on met à jour le dataTable avec les nouvelles valeurs
+
+                            vmodele.DT[8].Rows[indice]["NumV"] = Convert.ToInt32(formCRUD.CbTypeTravaux.Text.ToString());
+                            vmodele.DT[8].Rows[indice]["idT"] = Convert.ToInt32(formCRUD.CbTypeTravaux.Text.ToString());
+                            vmodele.DT[8].Rows[indice]["dateR"] = formCRUD.DateTimePicker.Text.ToString();
+                            vmodele.DT[8].Rows[indice]["tempsR"] = formCRUD.TextBoxTempsReparation.Text.ToString();
+                            vmodele.DA[8].Update(vmodele.DT[8]);
+                        }
+                        else
+                            MessageBox.Show("Erreur : Type de travaux, la date de réparation et le temps de réparation n'ont pas été saisis.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    MessageBox.Show("OK : Réparation enregistrée");
+                    formCRUD.Dispose();  // on ferme la form
+                }
+                else
+                {
+                    MessageBox.Show("Annulation : aucune réparation enregistrée");
                     formCRUD.Dispose();
                 }
             }

@@ -24,7 +24,7 @@ namespace PPE3_VELIBERTE
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void FormGestion_Load(object sender, EventArgs e)
-        {
+        {          
             dgvDonnees.Visible = false; 
             Controleur.Vmodele.charger_donnees("toutes");
 
@@ -120,8 +120,8 @@ namespace PPE3_VELIBERTE
                         bindingSource1.DataSource = Controleur.Vmodele.DT[6];
                         dgvDonnees.DataSource = bindingSource1;
                         dgvDonnees.Columns["idU"].HeaderText = "Numéro Utilisateur";
-                        dgvDonnees.Columns["loginU"].HeaderText = "Identifiant Utilisteur";
-                        dgvDonnees.Columns["mdpU"].HeaderText = "Mot de passee Utilisateur";
+                        dgvDonnees.Columns["loginU"].HeaderText = "Identifiant Utilisateur";
+                        dgvDonnees.Columns["mdpU"].HeaderText = "Mot de passe Utilisateur";
                     }
                     else if (table == "PPE_travaux")
                     {
@@ -175,7 +175,7 @@ namespace PPE3_VELIBERTE
                 if (table == "PPE_veloelectrique") Controleur.crud_veloelectrique('c', -1);
                 if (table == "PPE_vehicule") Controleur.crud_vehicule('c', -1);
                 if (table == "PPE_travaux") Controleur.crud_travaux('c', -1);
-                //if (table == "PPE_reparer") Controleur.crud_reparer('c', -1);
+                if (table == "PPE_reparer") Controleur.crud_reparer('c', -1);
                 //if (table == "PPE_louer") Controleur.crud_louer('c', -1);
 
             }
@@ -192,7 +192,7 @@ namespace PPE3_VELIBERTE
                         if (table == "PPE_veloelectrique") Controleur.crud_veloelectrique('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
                         if (table == "PPE_vehicule") Controleur.crud_vehicule('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
                         if (table == "PPE_travaux") Controleur.crud_travaux('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
-                        //if (table == "PPE_reparer") Controleur.crud_reparer('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
+                        if (table == "PPE_reparer") Controleur.crud_reparer('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
                         //if (table == "PPE_louer") Controleur.crud_louer('c', -1);
                     }
                     if (sender == supprimerToolStripMenuItem)
@@ -203,7 +203,7 @@ namespace PPE3_VELIBERTE
                         if (table == "PPE_veloelectrique") Controleur.crud_veloelectrique('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
                         if (table == "PPE_vehicule") Controleur.crud_vehicule('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
                         if (table == "PPE_travaux") Controleur.crud_travaux('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
-                        //if (table == "PPE_reparer") Controleur.crud_reparer('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
+                        if (table == "PPE_reparer") Controleur.crud_reparer('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
                         //if (table == "PPE_louer") Controleur.crud_louer('c', -1);
 
                     }
