@@ -477,7 +477,7 @@ namespace PPE3_VELIBERTE
 
                         if (formCRUD.RbClassique.Checked == true && formCRUD.RbElec.Checked == false) // si je veux ajouter velo classique
                         {
-                            vmodele.charger_donnees("vehicule");
+                            vmodele.charger_donnees("PPE_vehicule");
                             int numV = Convert.ToInt32(vmodele.DT[3].Rows[vmodele.DT[3].Rows.Count - 1]["numV"].ToString());
                             NouvLigne1["numV"] = numV;
                             NouvLigne1["latitudeV"] = formCRUD.TbLatC.Text;
@@ -487,7 +487,7 @@ namespace PPE3_VELIBERTE
                         }
                         else if (formCRUD.RbElec.Checked == true && formCRUD.RbClassique.Checked == false) // si je veux ajouter velo elec
                         {
-                            vmodele.charger_donnees("vehicule");
+                            vmodele.charger_donnees("PPE_vehicule");
                             int numV = Convert.ToInt32(vmodele.DT[3].Rows[vmodele.DT[3].Rows.Count - 1]["numV"].ToString());
                             NouvLigne2["numV"] = numV;
                             NouvLigne2["numB"] = Convert.ToInt32(formCRUD.CbNumBorne.SelectedIndex + 1);
@@ -620,7 +620,7 @@ namespace PPE3_VELIBERTE
 
                         if (formCRUD.RbClassique.Checked == true && formCRUD.RbElec.Checked == false) // ajout velo classique
                         {
-                            vmodele.charger_donnees("vehicule");
+                            vmodele.charger_donnees("PPE_vehicule");
                             int numV = Convert.ToInt32(vmodele.DT[3].Rows[vmodele.DT[3].Rows.Count - 1]["numV"].ToString());
                             NouvLigne1["numV"] = numV;
                             NouvLigne1["latitudeV"] = formCRUD.TbLatC.Text;
@@ -630,7 +630,7 @@ namespace PPE3_VELIBERTE
                         }
                         else if (formCRUD.RbElec.Checked == true && formCRUD.RbClassique.Checked == false) // ajout velo elec
                         {
-                            vmodele.charger_donnees("vehicule");
+                            vmodele.charger_donnees("PPE_vehicule");
                             int numV = Convert.ToInt32(vmodele.DT[3].Rows[vmodele.DT[3].Rows.Count - 1]["numV"].ToString());
                             NouvLigne2["numV"] = numV;
                             NouvLigne2["numB"] = Convert.ToInt32(formCRUD.CbNumBorne.SelectedIndex + 1);
@@ -678,10 +678,7 @@ namespace PPE3_VELIBERTE
                 DialogResult rep = MessageBox.Show("Etes-vous sûr de vouloir supprimer ceci  " + vmodele.DT[7].Rows[indice][1].ToString() + " ? ", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (rep == DialogResult.Yes)
                 {
-                    for (int i = 0; i < Vmodele.DT[7].Rows.Count; i++)
-                    {
-                            vmodele.DT[7].Rows[i].Delete();
-                    }
+                    vmodele.DT[7].Rows[indice].Delete();
                     vmodele.DA[7].Update(vmodele.DT[7]);			// mise à jour du DataAdapter
                 }
             }
@@ -767,32 +764,35 @@ namespace PPE3_VELIBERTE
                     DialogResult rep = MessageBox.Show("Etes-vous sûr de vouloir supprimer la réparation de type : " + vmodele.DT[7].Rows[indice][1].ToString() + " sur le vélo numéro : " + vmodele.DT[8].Rows[indice][0].ToString() + " ? ", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (rep == DialogResult.Yes)
                     {
-                        for (int i = 0; i < Vmodele.DT[8].Rows.Count; i++)
-                        {
-                            vmodele.DT[8].Rows[i].Delete();
-                        }
-                        vmodele.DA[8].Update(vmodele.DT[8]);            // mise à jour du DataAdapter
+                        vmodele.DT[8].Rows[indice].Delete();
+                        vmodele.DA[8].Update(vmodele.DT[8]);   // mise à jour du DataAdapter
                     }
             }
             else
             {
                 // cas de l'ajout et modification
                 FormCRUDReparation formCRUD = new FormCRUDReparation();  // création de la nouvelle forme
-                //FormCRUDVELOELEC formCRUD2 = new FormCRUDVELOELEC();
 
                 if (c == 'c')  // mode ajout donc pas de valeur à passer à la nouvelle forme
                 {
                     formCRUD.CbNumeroVelo.SelectedIndex = -1;
                     formCRUD.CbTypeTravaux.SelectedIndex = -1;
-                    formCRUD.DateTimePicker.Text = "";
-                    formCRUD.TextBoxTempsReparation.Clear();
+                    formCRUD.DatePicker.Text = "";
+                    formCRUD.TimePicker1.Text="";
                     formCRUD.CbUtilisateur.SelectedIndex = -1;
 
+                    for (int i = 0; i < Vmodele.DT[3].Rows.Count; i++)
+                    {
+                        formCRUD.CbNumeroVelo.Items.Add(Vmodele.DT[3].Rows[i]["numV"].ToString());
+                    }
                     for (int i = 0; i < Vmodele.DT[6].Rows.Count; i++)
                     {
                         formCRUD.CbUtilisateur.Items.Add(Vmodele.DT[6].Rows[i]["idU"].ToString());
                     }
-
+                    for (int i = 0; i < Vmodele.DT[7].Rows.Count; i++)
+                    {
+                        formCRUD.CbTypeTravaux.Items.Add(Vmodele.DT[7].Rows[i]["idT"].ToString());
+                    }
 
                 }
 
@@ -800,6 +800,7 @@ namespace PPE3_VELIBERTE
                 {
                     formCRUD.CbUtilisateur.Visible = false;
                     formCRUD.LabelUtilisateur.Visible = false;
+                    formCRUD.PbNonValideU.Visible = false;
                     // on remplit les zones par les valeurs du dataGridView correspondantes
                     for (int i =0; i < Vmodele.DT[3].Rows.Count; i++)
                     {
@@ -810,10 +811,10 @@ namespace PPE3_VELIBERTE
                         formCRUD.CbTypeTravaux.Items.Add(Vmodele.DT[7].Rows[i]["idT"].ToString());
                     }
 
-                    formCRUD.CbNumeroVelo.SelectedIndex = Convert.ToInt32(vmodele.DT[8].Rows[indice][0].ToString()) - 1;              
-                    formCRUD.CbTypeTravaux.Text = vmodele.DT[8].Rows[indice][1].ToString();
-                    formCRUD.DateTimePicker.Text = Convert.ToString(vmodele.DT[8].Rows[indice][2].ToString());
-                    formCRUD.TextBoxTempsReparation.Text = Convert.ToString(vmodele.DT[8].Rows[indice][3].ToString());
+                    formCRUD.CbNumeroVelo.Text = Convert.ToString(vmodele.DT[8].Rows[indice][0].ToString());        
+                    formCRUD.CbTypeTravaux.Text = Convert.ToString(vmodele.DT[8].Rows[indice][1].ToString());
+                    formCRUD.DatePicker.Text = Convert.ToString(vmodele.DT[8].Rows[indice][2].ToString());
+                    formCRUD.TimePicker1.Text = Convert.ToString(vmodele.DT[8].Rows[indice][3].ToString());
                 }
 
                 if (c == 'u')
@@ -829,54 +830,45 @@ namespace PPE3_VELIBERTE
                 // si l’utilisateur clique sur OK
                 if (formCRUD.DialogResult == DialogResult.OK)
                 {
-                    /*if (c == 'c') // ajout
+                    if (c == 'c') // ajout
                     {
+                        for (int i = 0; i < Vmodele.DT[3].Rows.Count; i++)
+                        {
+                            formCRUD.CbNumeroVelo.Items.Add(Vmodele.DT[3].Rows[i]["numV"].ToString()); // boucle pour charger le num des vélos
+                        }
                         for (int i = 0; i < Vmodele.DT[6].Rows.Count; i++)
                         {
-                            formCRUD.CbUtilisateur.Items.Add(Vmodele.DT[6].Rows[i]["idU"].ToString()); // boucle pour charger le num des bornes via leur nom 
+                            formCRUD.CbUtilisateur.Items.Add(Vmodele.DT[6].Rows[i]["idU"].ToString()); // boucle pour charger le num des utilisateurs
                         }
+                        for (int i = 0; i < Vmodele.DT[7].Rows.Count; i++)
+                        {
+                            formCRUD.CbTypeTravaux.Items.Add(Vmodele.DT[7].Rows[i]["idT"].ToString()); // boucle pour charger le num des travaux
+                        }
+                        
+                        DataRow NouvLigne = vmodele.DT[8].NewRow(); // table PPE_reparer
 
-                        DataRow NouvLigne = vmodele.DT[8].NewRow(); // table vehicule
-
-                        NouvLigne["NumV"] = formCRUD.CbEtatVehicule.Text;
+                        NouvLigne["numV"] = Convert.ToInt32(formCRUD.CbNumeroVelo.SelectedItem);
+                        NouvLigne["idT"] = Convert.ToInt32(formCRUD.CbTypeTravaux.SelectedItem);
+                        NouvLigne["dateR"] = formCRUD.DatePicker.Text;  
+                        NouvLigne["tempsR"] = formCRUD.TimePicker1.Text; 
+                        NouvLigne["idU"] = Convert.ToInt32(formCRUD.CbUtilisateur.SelectedItem); 
                         vmodele.DT[8].Rows.Add(NouvLigne);
                         vmodele.DA[8].Update(vmodele.DT[8]);
                         MessageBox.Show("Réparation ajoutée");
 
-
-                        if (formCRUD.RbClassique.Checked == true && formCRUD.RbElec.Checked == false) // ajout velo classique
-                        {
-                            vmodele.charger_donnees("vehicule");
-                            int numV = Convert.ToInt32(vmodele.DT[3].Rows[vmodele.DT[3].Rows.Count - 1]["numV"].ToString());
-                            NouvLigne1["numV"] = numV;
-                            NouvLigne1["latitudeV"] = formCRUD.TbLatC.Text;
-                            NouvLigne1["longitudeV"] = formCRUD.TbLongC.Text;
-                            vmodele.DT[5].Rows.Add(NouvLigne1);
-                            vmodele.DA[5].Update(vmodele.DT[5]);
-                        }
-                        else if (formCRUD.RbElec.Checked == true && formCRUD.RbClassique.Checked == false) // ajout velo elec
-                        {
-                            vmodele.charger_donnees("vehicule");
-                            int numV = Convert.ToInt32(vmodele.DT[3].Rows[vmodele.DT[3].Rows.Count - 1]["numV"].ToString());
-                            NouvLigne2["numV"] = numV;
-                            NouvLigne2["numB"] = Convert.ToInt32(formCRUD.CbNumBorne.SelectedIndex + 1);
-                            vmodele.DT[4].Rows.Add(NouvLigne2);
-                            vmodele.DA[4].Update(vmodele.DT[4]);
-                        }
-
-                    }*/
+                    }
 
                     if (c == 'u')  // modif
                     {
 
-                        if (formCRUD.CbTypeTravaux.Text != "" && formCRUD.DateTimePicker.Text != "" && formCRUD.TextBoxTempsReparation.Text !="")
+                        if (formCRUD.CbTypeTravaux.Text != "" && formCRUD.DatePicker.Text != "" && formCRUD.TimePicker1.Text !="")
                         {
                             // on met à jour le dataTable avec les nouvelles valeurs
 
-                            vmodele.DT[8].Rows[indice]["NumV"] = Convert.ToInt32(formCRUD.CbTypeTravaux.Text.ToString());
-                            vmodele.DT[8].Rows[indice]["idT"] = Convert.ToInt32(formCRUD.CbTypeTravaux.Text.ToString());
-                            vmodele.DT[8].Rows[indice]["dateR"] = formCRUD.DateTimePicker.Text.ToString();
-                            vmodele.DT[8].Rows[indice]["tempsR"] = formCRUD.TextBoxTempsReparation.Text.ToString();
+                            vmodele.DT[8].Rows[indice]["NumV"] = Convert.ToInt32(formCRUD.CbNumeroVelo.Text.ToString());
+                            vmodele.DT[8].Rows[indice]["IdT"] = Convert.ToInt32(formCRUD.CbTypeTravaux.Text.ToString());
+                            vmodele.DT[8].Rows[indice]["dateR"] = formCRUD.DatePicker.Text.ToString();
+                            vmodele.DT[8].Rows[indice]["tempsR"] = formCRUD.TimePicker1.Text.ToString();
                             vmodele.DA[8].Update(vmodele.DT[8]);
                         }
                         else

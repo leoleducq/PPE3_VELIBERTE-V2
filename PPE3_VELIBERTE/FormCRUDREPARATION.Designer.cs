@@ -32,27 +32,23 @@ namespace PPE3_VELIBERTE
         {
             this.pbNonValideU = new System.Windows.Forms.PictureBox();
             this.pbValideU = new System.Windows.Forms.PictureBox();
-            this.pbValideTR = new System.Windows.Forms.PictureBox();
-            this.pbNonValideTR = new System.Windows.Forms.PictureBox();
             this.pbNonValideTT = new System.Windows.Forms.PictureBox();
             this.pbValideTT = new System.Windows.Forms.PictureBox();
             this.labelUtilisateur = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
-            this.textBoxTempsReparation = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cbTypeTravaux = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.cbUtilisateur = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cbNumeroVelo = new System.Windows.Forms.ComboBox();
             this.pbValideNV = new System.Windows.Forms.PictureBox();
             this.pbNonValideNV = new System.Windows.Forms.PictureBox();
+            this.TimePicker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.pbNonValideU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbValideU)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbValideTR)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNonValideTR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNonValideTT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbValideTT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbValideNV)).BeginInit();
@@ -78,26 +74,6 @@ namespace PPE3_VELIBERTE
             this.pbValideU.TabIndex = 48;
             this.pbValideU.TabStop = false;
             this.pbValideU.Visible = false;
-            // 
-            // pbValideTR
-            // 
-            this.pbValideTR.Image = global::PPE3_VELIBERTE.Properties.Resources.valid_vert;
-            this.pbValideTR.Location = new System.Drawing.Point(406, 158);
-            this.pbValideTR.Name = "pbValideTR";
-            this.pbValideTR.Size = new System.Drawing.Size(27, 32);
-            this.pbValideTR.TabIndex = 47;
-            this.pbValideTR.TabStop = false;
-            this.pbValideTR.Visible = false;
-            // 
-            // pbNonValideTR
-            // 
-            this.pbNonValideTR.BackColor = System.Drawing.Color.Transparent;
-            this.pbNonValideTR.Image = global::PPE3_VELIBERTE.Properties.Resources.valid_rouge;
-            this.pbNonValideTR.Location = new System.Drawing.Point(452, 159);
-            this.pbNonValideTR.Name = "pbNonValideTR";
-            this.pbNonValideTR.Size = new System.Drawing.Size(26, 31);
-            this.pbNonValideTR.TabIndex = 46;
-            this.pbNonValideTR.TabStop = false;
             // 
             // pbNonValideTT
             // 
@@ -142,14 +118,7 @@ namespace PPE3_VELIBERTE
             this.btnOK.TabIndex = 39;
             this.btnOK.Text = "OK\r\n";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // textBoxTempsReparation
-            // 
-            this.textBoxTempsReparation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTempsReparation.Location = new System.Drawing.Point(201, 159);
-            this.textBoxTempsReparation.Name = "textBoxTempsReparation";
-            this.textBoxTempsReparation.Size = new System.Drawing.Size(159, 22);
-            this.textBoxTempsReparation.TabIndex = 38;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // label3
             // 
@@ -192,13 +161,14 @@ namespace PPE3_VELIBERTE
             this.cbTypeTravaux.Name = "cbTypeTravaux";
             this.cbTypeTravaux.Size = new System.Drawing.Size(128, 21);
             this.cbTypeTravaux.TabIndex = 52;
+            this.cbTypeTravaux.SelectedIndexChanged += new System.EventHandler(this.cbTypeTravaux_SelectedIndexChanged);
             // 
-            // dateTimePicker
+            // datePicker
             // 
-            this.dateTimePicker.Location = new System.Drawing.Point(201, 121);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(189, 20);
-            this.dateTimePicker.TabIndex = 54;
+            this.datePicker.Location = new System.Drawing.Point(201, 121);
+            this.datePicker.Name = "datePicker";
+            this.datePicker.Size = new System.Drawing.Size(187, 20);
+            this.datePicker.TabIndex = 54;
             // 
             // cbUtilisateur
             // 
@@ -208,6 +178,7 @@ namespace PPE3_VELIBERTE
             this.cbUtilisateur.Name = "cbUtilisateur";
             this.cbUtilisateur.Size = new System.Drawing.Size(128, 21);
             this.cbUtilisateur.TabIndex = 55;
+            this.cbUtilisateur.SelectedIndexChanged += new System.EventHandler(this.cbUtilisateur_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -228,6 +199,7 @@ namespace PPE3_VELIBERTE
             this.cbNumeroVelo.Name = "cbNumeroVelo";
             this.cbNumeroVelo.Size = new System.Drawing.Size(128, 21);
             this.cbNumeroVelo.TabIndex = 57;
+            this.cbNumeroVelo.SelectedIndexChanged += new System.EventHandler(this.cbNumeroVelo_SelectedIndexChanged);
             // 
             // pbValideNV
             // 
@@ -249,27 +221,34 @@ namespace PPE3_VELIBERTE
             this.pbNonValideNV.TabIndex = 59;
             this.pbNonValideNV.TabStop = false;
             // 
+            // TimePicker
+            // 
+            this.TimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.TimePicker.Location = new System.Drawing.Point(200, 161);
+            this.TimePicker.Name = "TimePicker";
+            this.TimePicker.Size = new System.Drawing.Size(85, 20);
+            this.TimePicker.TabIndex = 60;
+            this.TimePicker.ValueChanged += new System.EventHandler(this.TimePicker_ValueChanged);
+            // 
             // FormCRUDReparation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 361);
+            this.Controls.Add(this.TimePicker);
             this.Controls.Add(this.pbNonValideNV);
             this.Controls.Add(this.pbValideNV);
             this.Controls.Add(this.cbNumeroVelo);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cbUtilisateur);
-            this.Controls.Add(this.dateTimePicker);
+            this.Controls.Add(this.datePicker);
             this.Controls.Add(this.cbTypeTravaux);
             this.Controls.Add(this.pbNonValideU);
             this.Controls.Add(this.pbValideU);
-            this.Controls.Add(this.pbValideTR);
-            this.Controls.Add(this.pbNonValideTR);
             this.Controls.Add(this.pbNonValideTT);
             this.Controls.Add(this.pbValideTT);
             this.Controls.Add(this.labelUtilisateur);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.textBoxTempsReparation);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -278,8 +257,6 @@ namespace PPE3_VELIBERTE
             this.Load += new System.EventHandler(this.FormCRUDReparation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbNonValideU)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbValideU)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbValideTR)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNonValideTR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNonValideTT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbValideTT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbValideNV)).EndInit();
@@ -292,29 +269,28 @@ namespace PPE3_VELIBERTE
         #endregion
         private System.Windows.Forms.PictureBox pbNonValideU;
         private System.Windows.Forms.PictureBox pbValideU;
-        private System.Windows.Forms.PictureBox pbValideTR;
-        private System.Windows.Forms.PictureBox pbNonValideTR;
         private System.Windows.Forms.PictureBox pbNonValideTT;
         private System.Windows.Forms.PictureBox pbValideTT;
         private System.Windows.Forms.Label labelUtilisateur;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.TextBox textBoxTempsReparation;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbTypeTravaux;
-        private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.DateTimePicker datePicker;
         private System.Windows.Forms.ComboBox cbUtilisateur;
         private Label label5;
         private ComboBox cbNumeroVelo;
         private PictureBox pbValideNV;
         private PictureBox pbNonValideNV;
+        private DateTimePicker TimePicker;
 
         public ComboBox CbTypeTravaux { get => cbTypeTravaux; set => cbTypeTravaux = value; }
-        public DateTimePicker DateTimePicker { get => dateTimePicker; set => dateTimePicker = value; }
-        public TextBox TextBoxTempsReparation { get => textBoxTempsReparation; set => textBoxTempsReparation = value; }
+        public DateTimePicker DatePicker { get => datePicker; set => datePicker = value; }
         public ComboBox CbUtilisateur { get => cbUtilisateur; set => cbUtilisateur = value; }
         public ComboBox CbNumeroVelo { get => cbNumeroVelo; set => cbNumeroVelo = value; }
         public Label LabelUtilisateur { get => labelUtilisateur; set => labelUtilisateur = value; }
+        public DateTimePicker TimePicker1 { get => TimePicker; set => TimePicker = value; }
+        public PictureBox PbNonValideU { get => pbNonValideU; set => pbNonValideU = value; }
     }
 }
