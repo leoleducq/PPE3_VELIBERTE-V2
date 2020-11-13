@@ -32,7 +32,7 @@ namespace PPE3_VELIBERTE
             }
             else
             {
-                //MessageBox.Show("BD connectée", "Information BD", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("BD connectée", "Information BD", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -60,44 +60,8 @@ namespace PPE3_VELIBERTE
         /// <param name="e"></param>
         private void GestionDesDonneesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
-            FormGestion F = new FormGestion(false);
+            FormGestion F = new FormGestion();
             F.Show();
         }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            panel.Visible = true;
-        }
-
-        private void BoutonValider_Click(object sender, EventArgs e)
-        {
-            bool trouve = false;
-            Controleur.Vmodele.charger_donnees("PPE_utilisateur");
-            for (int i = 0; i < Controleur.Vmodele.DT[6].Rows.Count; i++)
-            {
-                if (textBoxIdentifiant.Text == Controleur.Vmodele.DT[6].Rows[i]["loginU"].ToString() && textBoxMDP.Text == Controleur.Vmodele.DT[6].Rows[i]["mdpU"].ToString())
-                {
-                    Controleur.Vmodele.DT[6].Rows[i]["idU"] = Controleur.idU;
-                    MessageBox.Show("Bienvenue" + " ", "Bienvenue", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    trouve = true;
-                    this.Visible = false;
-                    FormGestion F = new FormGestion(true);
-                    F.Show();
-                }
-
-            }
-            if (trouve == false)
-            {
-                MessageBox.Show("Erreur dans les identifiants de connexion" + "", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void BoutonAnnuler_Click(object sender, EventArgs e)
-        {
-            textBoxIdentifiant.Clear();
-            textBoxMDP.Clear();
-        }
-
     }
 }

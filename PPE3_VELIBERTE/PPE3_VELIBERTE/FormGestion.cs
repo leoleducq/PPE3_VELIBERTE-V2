@@ -12,11 +12,9 @@ namespace PPE3_VELIBERTE
 {
     public partial class FormGestion : Form
     {
-        bool trouve;
         private BindingSource bindingSource1;
-        public FormGestion(bool trouve)
+        public FormGestion()
         {
-            this.trouve = trouve;
             InitializeComponent();
         }
 
@@ -26,7 +24,7 @@ namespace PPE3_VELIBERTE
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void FormGestion_Load(object sender, EventArgs e)
-        {          
+        {
             dgvDonnees.Visible = false; 
             Controleur.Vmodele.charger_donnees("toutes");
 
@@ -65,7 +63,7 @@ namespace PPE3_VELIBERTE
                 {
                     // un DT par table
                     bindingSource1 = new BindingSource();
-                    if (table == "PPE_borne")
+                    if (table == "borne")
                     {
                         bindingSource1.DataSource = Controleur.Vmodele.DT[1];
                         dgvDonnees.DataSource = bindingSource1;
@@ -77,7 +75,7 @@ namespace PPE3_VELIBERTE
                         dgvDonnees.Columns["longitudeV"].HeaderText = "longitude";
 
                     }
-                    else if (table == "PPE_adherent")
+                    else if (table == "adherent")
                     {
                         bindingSource1.DataSource = Controleur.Vmodele.DT[2];
                         dgvDonnees.DataSource = bindingSource1;
@@ -92,7 +90,7 @@ namespace PPE3_VELIBERTE
                         dgvDonnees.Columns["password"].HeaderText = "mot de passe Utilisateur";
                         dgvDonnees.Columns["Pidentite"].HeaderText = "Pièce d'identité";
                     }
-                    else if (table == "PPE_vehicule")
+                    else if (table == "vehicule")
                     {
                         bindingSource1.DataSource = Controleur.Vmodele.DT[3];
                         dgvDonnees.DataSource = bindingSource1;
@@ -101,7 +99,7 @@ namespace PPE3_VELIBERTE
 
 
                     }
-                    else if (table == "PPE_veloelectrique")
+                    else if (table == "veloelectrique")
                     {
                         bindingSource1.DataSource = Controleur.Vmodele.DT[4];
                         dgvDonnees.DataSource = bindingSource1;
@@ -109,57 +107,13 @@ namespace PPE3_VELIBERTE
                         dgvDonnees.Columns["numB"].HeaderText = "Numéro";
 
                     }
-                    else if (table == "PPE_velo")
+                    else if (table == "velo")
                     {
                         bindingSource1.DataSource = Controleur.Vmodele.DT[5];
                         dgvDonnees.DataSource = bindingSource1;
                         dgvDonnees.Columns["numV"].HeaderText = "Numéro Vélo";
                         dgvDonnees.Columns["latitudeV"].HeaderText = "Latitude Vélo";
                         dgvDonnees.Columns["longitudeV"].HeaderText = "Longitude vélo";
-                    }
-                    else if (table == "PPE_utilisateur")
-                    {
-                        bindingSource1.DataSource = Controleur.Vmodele.DT[6];
-                        dgvDonnees.DataSource = bindingSource1;
-                        dgvDonnees.Columns["idU"].HeaderText = "Numéro Utilisateur";
-                        dgvDonnees.Columns["loginU"].HeaderText = "Identifiant Utilisateur";
-                        dgvDonnees.Columns["mdpU"].HeaderText = "Mot de passe Utilisateur";
-                    }
-                    else if (table == "PPE_travaux" && trouve == true)
-                    {
-                        bindingSource1.DataSource = Controleur.Vmodele.DT[7];
-                        dgvDonnees.DataSource = bindingSource1;
-                        dgvDonnees.Columns["idT"].HeaderText = "Numéro Travaux";
-                        dgvDonnees.Columns["libelleT"].HeaderText = "Libellé Travaux";
-                    }
-                    else if (table == "PPE_travaux" && trouve == false)
-                    {
-                        DialogResult choix = MessageBox.Show("Veuillez vous connecter en tant que technicien", "", MessageBoxButtons.YesNo);                     
-                        if(choix == DialogResult.Yes)
-                        {
-                            FormPrincipale F = new FormPrincipale();
-                            F.Show();
-                        }
-
-                    }
-                    else if (table =="PPE_reparer" && trouve == true)
-                    {
-                        bindingSource1.DataSource = Controleur.Vmodele.DT[8];
-                        dgvDonnees.DataSource = bindingSource1;
-                        dgvDonnees.Columns["NumV"].HeaderText = "Numéro Vélo";
-                        dgvDonnees.Columns["idT"].HeaderText = "Numéro Travaux";
-                        dgvDonnees.Columns["dateR"].HeaderText = "Date Réparation";
-                        dgvDonnees.Columns["tempsR"].HeaderText = "Temps Réparation";
-                        dgvDonnees.Columns["idU"].HeaderText = "Identifiant Utilisateur";
-                    }
-                    else if (table == "PPE_reparer" && trouve == false)
-                    {
-                        DialogResult choix = MessageBox.Show("Veuillez vous connecter en tant que technicien", "", MessageBoxButtons.YesNo);
-                        if (choix == DialogResult.Yes)
-                        {
-                            FormPrincipale F = new FormPrincipale();
-                            F.Show();
-                        }
                     }
 
                     // mise à jour du dataGridView via le bindingSource rempli par le DataTable
@@ -190,15 +144,11 @@ namespace PPE3_VELIBERTE
             {
                 // appel de la méthode du controleur en mode create
 
-                if (table == "PPE_borne") Controleur.crud_borne('c', -1);
-                if (table == "PPE_adherent") Controleur.crud_adherent('c', -1);
-                if (table == "PPE_velo") Controleur.crud_velo('c', -1);
-                if (table == "PPE_veloelectrique") Controleur.crud_veloelectrique('c', -1);
-                if (table == "PPE_vehicule") Controleur.crud_vehicule('c', -1);
-                if (table == "PPE_travaux") Controleur.crud_travaux('c', -1);
-                if (table == "PPE_reparer") Controleur.crud_reparer('c', -1);
-                //if (table == "PPE_louer") Controleur.crud_louer('c', -1);
-
+                if (table == "borne") Controleur.crud_borne('c', -1);
+                if (table == "adherent") Controleur.crud_adherent('c', -1);
+                if (table == "velo") Controleur.crud_velo('c', -1);
+                if (table == "veloelectrique") Controleur.crud_veloelectrique('c', -1);
+                if (table == "vehicule") Controleur.crud_vehicule('c', -1);
             }
             else
             {
@@ -207,25 +157,19 @@ namespace PPE3_VELIBERTE
                 {
                     if (sender == modifierToolStripMenuItem)
                     {
-                        if (table == "PPE_borne") Controleur.crud_borne('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
-                        if (table == "PPE_adherent") Controleur.crud_adherent('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
-                        if (table == "PPE_velo") Controleur.crud_velo('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
-                        if (table == "PPE_veloelectrique") Controleur.crud_veloelectrique('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
-                        if (table == "PPE_vehicule") Controleur.crud_vehicule('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
-                        if (table == "PPE_travaux") Controleur.crud_travaux('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
-                        if (table == "PPE_reparer") Controleur.crud_reparer('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
-                        //if (table == "PPE_louer") Controleur.crud_louer('c', -1);
+                        if (table == "borne") Controleur.crud_borne('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
+                        if (table == "adherent") Controleur.crud_adherent('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
+                        if (table == "velo") Controleur.crud_velo('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
+                        if (table == "veloelectrique") Controleur.crud_veloelectrique('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
+                        if (table == "vehicule") Controleur.crud_vehicule('u', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
                     }
                     if (sender == supprimerToolStripMenuItem)
                     {
-                        if (table == "PPE_borne") Controleur.crud_borne('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
-                        if (table == "PPE_adherent") Controleur.crud_adherent('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
-                        if (table == "PPE_velo") Controleur.crud_velo('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
-                        if (table == "PPE_veloelectrique") Controleur.crud_veloelectrique('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
-                        if (table == "PPE_vehicule") Controleur.crud_vehicule('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
-                        if (table == "PPE_travaux") Controleur.crud_travaux('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
-                        if (table == "PPE_reparer") Controleur.crud_reparer('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
-                        //if (table == "PPE_louer") Controleur.crud_louer('c', -1);
+                        if (table == "borne") Controleur.crud_borne('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
+                        if (table == "adherent") Controleur.crud_adherent('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
+                        if (table == "velo") Controleur.crud_velo('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
+                        if (table == "veloelectrique") Controleur.crud_veloelectrique('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
+                        if (table == "vehicule") Controleur.crud_vehicule('d', Convert.ToInt32(dgvDonnees.SelectedRows[0].Index));
 
                     }
 
