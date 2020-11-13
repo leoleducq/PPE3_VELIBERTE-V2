@@ -29,19 +29,26 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipale));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.GestionDesDonneesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.boutonSeConnecter = new System.Windows.Forms.Button();
-            this.labelIdentifiant = new System.Windows.Forms.Label();
             this.labelMDP = new System.Windows.Forms.Label();
-            this.textBoxIdentifiant = new System.Windows.Forms.TextBox();
+            this.labelIdentifiant = new System.Windows.Forms.Label();
             this.textBoxMDP = new System.Windows.Forms.TextBox();
-            this.panel = new System.Windows.Forms.Panel();
-            this.boutonAnnuler = new System.Windows.Forms.Button();
+            this.textBoxIdentifiant = new System.Windows.Forms.TextBox();
             this.boutonValider = new System.Windows.Forms.Button();
+            this.boutonAnnuler = new System.Windows.Forms.Button();
+            this.panel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.panel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // GestionDesDonneesToolStripMenuItem
+            // 
+            this.GestionDesDonneesToolStripMenuItem.Name = "GestionDesDonneesToolStripMenuItem";
+            this.GestionDesDonneesToolStripMenuItem.Size = new System.Drawing.Size(128, 20);
+            this.GestionDesDonneesToolStripMenuItem.Text = "Gestion des données";
+            this.GestionDesDonneesToolStripMenuItem.Click += new System.EventHandler(this.GestionDesDonneesToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
@@ -53,13 +60,6 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // GestionDesDonneesToolStripMenuItem
-            // 
-            this.GestionDesDonneesToolStripMenuItem.Name = "GestionDesDonneesToolStripMenuItem";
-            this.GestionDesDonneesToolStripMenuItem.Size = new System.Drawing.Size(128, 20);
-            this.GestionDesDonneesToolStripMenuItem.Text = "Gestion des données";
-            this.GestionDesDonneesToolStripMenuItem.Click += new System.EventHandler(this.GestionDesDonneesToolStripMenuItem_Click);
-            // 
             // boutonSeConnecter
             // 
             this.boutonSeConnecter.Location = new System.Drawing.Point(175, 55);
@@ -70,15 +70,6 @@
             this.boutonSeConnecter.UseVisualStyleBackColor = true;
             this.boutonSeConnecter.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // labelIdentifiant
-            // 
-            this.labelIdentifiant.AutoSize = true;
-            this.labelIdentifiant.Location = new System.Drawing.Point(43, 20);
-            this.labelIdentifiant.Name = "labelIdentifiant";
-            this.labelIdentifiant.Size = new System.Drawing.Size(99, 20);
-            this.labelIdentifiant.TabIndex = 2;
-            this.labelIdentifiant.Text = "identifiant :";
-            // 
             // labelMDP
             // 
             this.labelMDP.AutoSize = true;
@@ -88,12 +79,14 @@
             this.labelMDP.TabIndex = 3;
             this.labelMDP.Text = "mot de passe :";
             // 
-            // textBoxIdentifiant
+            // labelIdentifiant
             // 
-            this.textBoxIdentifiant.Location = new System.Drawing.Point(161, 17);
-            this.textBoxIdentifiant.Name = "textBoxIdentifiant";
-            this.textBoxIdentifiant.Size = new System.Drawing.Size(160, 26);
-            this.textBoxIdentifiant.TabIndex = 4;
+            this.labelIdentifiant.AutoSize = true;
+            this.labelIdentifiant.Location = new System.Drawing.Point(43, 20);
+            this.labelIdentifiant.Name = "labelIdentifiant";
+            this.labelIdentifiant.Size = new System.Drawing.Size(99, 20);
+            this.labelIdentifiant.TabIndex = 2;
+            this.labelIdentifiant.Text = "identifiant :";
             // 
             // textBoxMDP
             // 
@@ -102,6 +95,33 @@
             this.textBoxMDP.PasswordChar = '*';
             this.textBoxMDP.Size = new System.Drawing.Size(160, 26);
             this.textBoxMDP.TabIndex = 5;
+            // 
+            // textBoxIdentifiant
+            // 
+            this.textBoxIdentifiant.Location = new System.Drawing.Point(161, 17);
+            this.textBoxIdentifiant.Name = "textBoxIdentifiant";
+            this.textBoxIdentifiant.Size = new System.Drawing.Size(160, 26);
+            this.textBoxIdentifiant.TabIndex = 4;
+            // 
+            // boutonValider
+            // 
+            this.boutonValider.Location = new System.Drawing.Point(233, 121);
+            this.boutonValider.Name = "boutonValider";
+            this.boutonValider.Size = new System.Drawing.Size(108, 34);
+            this.boutonValider.TabIndex = 7;
+            this.boutonValider.Text = "VALIDER";
+            this.boutonValider.UseVisualStyleBackColor = true;
+            this.boutonValider.Click += new System.EventHandler(this.BoutonValider_Click);
+            // 
+            // boutonAnnuler
+            // 
+            this.boutonAnnuler.Location = new System.Drawing.Point(108, 121);
+            this.boutonAnnuler.Name = "boutonAnnuler";
+            this.boutonAnnuler.Size = new System.Drawing.Size(108, 34);
+            this.boutonAnnuler.TabIndex = 8;
+            this.boutonAnnuler.Text = "ANNULER";
+            this.boutonAnnuler.UseVisualStyleBackColor = true;
+            this.boutonAnnuler.Click += new System.EventHandler(this.BoutonAnnuler_Click);
             // 
             // panel
             // 
@@ -117,26 +137,6 @@
             this.panel.Size = new System.Drawing.Size(361, 168);
             this.panel.TabIndex = 6;
             this.panel.Visible = false;
-            // 
-            // boutonAnnuler
-            // 
-            this.boutonAnnuler.Location = new System.Drawing.Point(108, 121);
-            this.boutonAnnuler.Name = "boutonAnnuler";
-            this.boutonAnnuler.Size = new System.Drawing.Size(108, 34);
-            this.boutonAnnuler.TabIndex = 8;
-            this.boutonAnnuler.Text = "ANNULER";
-            this.boutonAnnuler.UseVisualStyleBackColor = true;
-            this.boutonAnnuler.Click += new System.EventHandler(this.BoutonAnnuler_Click);
-            // 
-            // boutonValider
-            // 
-            this.boutonValider.Location = new System.Drawing.Point(233, 121);
-            this.boutonValider.Name = "boutonValider";
-            this.boutonValider.Size = new System.Drawing.Size(108, 34);
-            this.boutonValider.TabIndex = 7;
-            this.boutonValider.Text = "VALIDER";
-            this.boutonValider.UseVisualStyleBackColor = true;
-            this.boutonValider.Click += new System.EventHandler(this.BoutonValider_Click);
             // 
             // FormPrincipale
             // 
@@ -167,16 +167,16 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem GestionDesDonneesToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Button boutonSeConnecter;
-        private System.Windows.Forms.Label labelIdentifiant;
         private System.Windows.Forms.Label labelMDP;
-        private System.Windows.Forms.TextBox textBoxIdentifiant;
+        private System.Windows.Forms.Label labelIdentifiant;
         private System.Windows.Forms.TextBox textBoxMDP;
-        private System.Windows.Forms.Panel panel;
-        private System.Windows.Forms.Button boutonAnnuler;
+        private System.Windows.Forms.TextBox textBoxIdentifiant;
         private System.Windows.Forms.Button boutonValider;
+        private System.Windows.Forms.Button boutonAnnuler;
+        private System.Windows.Forms.Panel panel;
     }
 }
 

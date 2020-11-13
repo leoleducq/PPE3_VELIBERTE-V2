@@ -56,14 +56,7 @@ namespace PPE3_VELIBERTE
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(cbNumeroVelo.SelectedItem.ToString() =="")
-            {
-                MessageBox.Show("Veuillez séléctionner un vélo à réparer");
-            }
-            else if(cbTypeTravaux.SelectedItem.ToString() == "")
-            {
 
-            }
         }
     }
 }
