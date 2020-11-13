@@ -779,15 +779,11 @@ namespace PPE3_VELIBERTE
                     formCRUD.CbTypeTravaux.SelectedIndex = -1;
                     formCRUD.DatePicker.Text = "";
                     formCRUD.TimePicker1.Text="";
-                    formCRUD.CbUtilisateur.SelectedIndex = -1;
+                    //formCRUD.CbUtilisateur.SelectedIndex = -1;
 
                     for (int i = 0; i < Vmodele.DT[3].Rows.Count; i++)
                     {
                         formCRUD.CbNumeroVelo.Items.Add(Vmodele.DT[3].Rows[i]["numV"].ToString());
-                    }
-                    for (int i = 0; i < Vmodele.DT[6].Rows.Count; i++)
-                    {
-                        formCRUD.CbUtilisateur.Items.Add(Vmodele.DT[6].Rows[i]["idU"].ToString());
                     }
                     for (int i = 0; i < Vmodele.DT[7].Rows.Count; i++)
                     {
@@ -798,9 +794,6 @@ namespace PPE3_VELIBERTE
 
                 if (c == 'u')   // mode update donc on récupère les champs
                 {
-                    formCRUD.CbUtilisateur.Visible = false;
-                    formCRUD.LabelUtilisateur.Visible = false;
-                    formCRUD.PbNonValideU.Visible = false;
                     // on remplit les zones par les valeurs du dataGridView correspondantes
                     for (int i =0; i < Vmodele.DT[3].Rows.Count; i++)
                     {
@@ -836,10 +829,10 @@ namespace PPE3_VELIBERTE
                         {
                             formCRUD.CbNumeroVelo.Items.Add(Vmodele.DT[3].Rows[i]["numV"].ToString()); // boucle pour charger le num des vélos
                         }
-                        for (int i = 0; i < Vmodele.DT[6].Rows.Count; i++)
+                        /*for (int i = 0; i < Vmodele.DT[6].Rows.Count; i++)
                         {
                             formCRUD.CbUtilisateur.Items.Add(Vmodele.DT[6].Rows[i]["idU"].ToString()); // boucle pour charger le num des utilisateurs
-                        }
+                        }*/
                         for (int i = 0; i < Vmodele.DT[7].Rows.Count; i++)
                         {
                             formCRUD.CbTypeTravaux.Items.Add(Vmodele.DT[7].Rows[i]["idT"].ToString()); // boucle pour charger le num des travaux
@@ -851,7 +844,7 @@ namespace PPE3_VELIBERTE
                         NouvLigne["idT"] = Convert.ToInt32(formCRUD.CbTypeTravaux.SelectedItem);
                         NouvLigne["dateR"] = formCRUD.DatePicker.Text;  
                         NouvLigne["tempsR"] = formCRUD.TimePicker1.Text; 
-                        NouvLigne["idU"] = Convert.ToInt32(formCRUD.CbUtilisateur.SelectedItem); 
+                        NouvLigne["idU"] = idU;
                         vmodele.DT[8].Rows.Add(NouvLigne);
                         vmodele.DA[8].Update(vmodele.DT[8]);
                         MessageBox.Show("Réparation ajoutée");

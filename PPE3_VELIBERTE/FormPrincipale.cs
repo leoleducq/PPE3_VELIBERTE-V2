@@ -78,7 +78,7 @@ namespace PPE3_VELIBERTE
             {
                 if (textBoxIdentifiant.Text == Controleur.Vmodele.DT[6].Rows[i]["loginU"].ToString() && textBoxMDP.Text == Controleur.Vmodele.DT[6].Rows[i]["mdpU"].ToString())
                 {
-                    Controleur.Vmodele.DT[6].Rows[i]["idU"] = Controleur.idU;
+                    Controleur.idU = Convert.ToInt32(Controleur.Vmodele.DT[6].Rows[i]["idU"]);
                     MessageBox.Show("Bienvenue" + " ", "Bienvenue", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     trouve = true;
                     this.Visible = false;

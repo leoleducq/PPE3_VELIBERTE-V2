@@ -42,11 +42,7 @@ namespace PPE3_VELIBERTE
 
         private void cbUtilisateur_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cbUtilisateur.SelectedItem.ToString() !="")
-            {
-                pbNonValideU.Visible = false;
-                pbValideU.Visible = true;
-            }
+
         }
 
         private void TimePicker_ValueChanged(object sender, EventArgs e)

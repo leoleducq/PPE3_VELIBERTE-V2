@@ -30,50 +30,24 @@ namespace PPE3_VELIBERTE
         /// </summary>
         private void InitializeComponent()
         {
-            this.pbNonValideU = new System.Windows.Forms.PictureBox();
-            this.pbValideU = new System.Windows.Forms.PictureBox();
             this.pbNonValideTT = new System.Windows.Forms.PictureBox();
             this.pbValideTT = new System.Windows.Forms.PictureBox();
-            this.labelUtilisateur = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cbTypeTravaux = new System.Windows.Forms.ComboBox();
             this.datePicker = new System.Windows.Forms.DateTimePicker();
-            this.cbUtilisateur = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cbNumeroVelo = new System.Windows.Forms.ComboBox();
             this.pbValideNV = new System.Windows.Forms.PictureBox();
             this.pbNonValideNV = new System.Windows.Forms.PictureBox();
             this.TimePicker = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNonValideU)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbValideU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNonValideTT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbValideTT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbValideNV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNonValideNV)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pbNonValideU
-            // 
-            this.pbNonValideU.BackColor = System.Drawing.Color.Transparent;
-            this.pbNonValideU.Image = global::PPE3_VELIBERTE.Properties.Resources.valid_rouge;
-            this.pbNonValideU.Location = new System.Drawing.Point(452, 197);
-            this.pbNonValideU.Name = "pbNonValideU";
-            this.pbNonValideU.Size = new System.Drawing.Size(26, 31);
-            this.pbNonValideU.TabIndex = 49;
-            this.pbNonValideU.TabStop = false;
-            // 
-            // pbValideU
-            // 
-            this.pbValideU.Image = global::PPE3_VELIBERTE.Properties.Resources.valid_vert;
-            this.pbValideU.Location = new System.Drawing.Point(406, 196);
-            this.pbValideU.Name = "pbValideU";
-            this.pbValideU.Size = new System.Drawing.Size(27, 32);
-            this.pbValideU.TabIndex = 48;
-            this.pbValideU.TabStop = false;
-            this.pbValideU.Visible = false;
             // 
             // pbNonValideTT
             // 
@@ -94,17 +68,6 @@ namespace PPE3_VELIBERTE
             this.pbValideTT.TabIndex = 44;
             this.pbValideTT.TabStop = false;
             this.pbValideTT.Visible = false;
-            // 
-            // labelUtilisateur
-            // 
-            this.labelUtilisateur.AutoSize = true;
-            this.labelUtilisateur.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUtilisateur.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.labelUtilisateur.Location = new System.Drawing.Point(118, 204);
-            this.labelUtilisateur.Name = "labelUtilisateur";
-            this.labelUtilisateur.Size = new System.Drawing.Size(73, 16);
-            this.labelUtilisateur.TabIndex = 40;
-            this.labelUtilisateur.Text = "Utilisateur :";
             // 
             // btnOK
             // 
@@ -170,16 +133,6 @@ namespace PPE3_VELIBERTE
             this.datePicker.Size = new System.Drawing.Size(187, 20);
             this.datePicker.TabIndex = 54;
             // 
-            // cbUtilisateur
-            // 
-            this.cbUtilisateur.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbUtilisateur.FormattingEnabled = true;
-            this.cbUtilisateur.Location = new System.Drawing.Point(201, 203);
-            this.cbUtilisateur.Name = "cbUtilisateur";
-            this.cbUtilisateur.Size = new System.Drawing.Size(128, 21);
-            this.cbUtilisateur.TabIndex = 55;
-            this.cbUtilisateur.SelectedIndexChanged += new System.EventHandler(this.cbUtilisateur_SelectedIndexChanged);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -240,14 +193,10 @@ namespace PPE3_VELIBERTE
             this.Controls.Add(this.pbValideNV);
             this.Controls.Add(this.cbNumeroVelo);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.cbUtilisateur);
             this.Controls.Add(this.datePicker);
             this.Controls.Add(this.cbTypeTravaux);
-            this.Controls.Add(this.pbNonValideU);
-            this.Controls.Add(this.pbValideU);
             this.Controls.Add(this.pbNonValideTT);
             this.Controls.Add(this.pbValideTT);
-            this.Controls.Add(this.labelUtilisateur);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -255,8 +204,6 @@ namespace PPE3_VELIBERTE
             this.Name = "FormCRUDReparation";
             this.Text = "FormCRUDReparation";
             this.Load += new System.EventHandler(this.FormCRUDReparation_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pbNonValideU)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbValideU)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNonValideTT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbValideTT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbValideNV)).EndInit();
@@ -267,18 +214,14 @@ namespace PPE3_VELIBERTE
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox pbNonValideU;
-        private System.Windows.Forms.PictureBox pbValideU;
         private System.Windows.Forms.PictureBox pbNonValideTT;
         private System.Windows.Forms.PictureBox pbValideTT;
-        private System.Windows.Forms.Label labelUtilisateur;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbTypeTravaux;
         private System.Windows.Forms.DateTimePicker datePicker;
-        private System.Windows.Forms.ComboBox cbUtilisateur;
         private Label label5;
         private ComboBox cbNumeroVelo;
         private PictureBox pbValideNV;
@@ -287,10 +230,9 @@ namespace PPE3_VELIBERTE
 
         public ComboBox CbTypeTravaux { get => cbTypeTravaux; set => cbTypeTravaux = value; }
         public DateTimePicker DatePicker { get => datePicker; set => datePicker = value; }
-        public ComboBox CbUtilisateur { get => cbUtilisateur; set => cbUtilisateur = value; }
+
         public ComboBox CbNumeroVelo { get => cbNumeroVelo; set => cbNumeroVelo = value; }
-        public Label LabelUtilisateur { get => labelUtilisateur; set => labelUtilisateur = value; }
+
         public DateTimePicker TimePicker1 { get => TimePicker; set => TimePicker = value; }
-        public PictureBox PbNonValideU { get => pbNonValideU; set => pbNonValideU = value; }
     }
 }
