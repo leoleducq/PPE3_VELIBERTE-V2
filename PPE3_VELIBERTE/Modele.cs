@@ -104,7 +104,7 @@ namespace PPE3_VELIBERTE
         /// </summary>
         public void seconnecter()
         {
-            string myConnectionString = "Database=2021_slamBDD24;Data Source=192.168.10.70;User Id=2021_slamBDD24; Password = P@ssw0rd";
+            string myConnectionString = "Database=PPE_SLAMBDD;Data Source=192.168.177.1;User Id=jrousselet; Password = jrousselet";
             myConnection = new MySqlConnection(myConnectionString);
             try // tentative 
             {
